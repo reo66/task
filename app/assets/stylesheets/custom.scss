@@ -52,21 +52,47 @@ p {
 
 /* ヘッダー */
 
+#header {
+  background-color: teal;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
+  font-style:italic;
   color: #fff;
-  text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  
 }
 
 #logo:hover {
-  color: #fff;
+  color:silver;
   text-decoration: none;
 }
+
+
+li .header-list {
+  color: #fff !important;
+  font-weight: bold;
+  &:hover {
+    color: silver !important;
+  }
+}
+
+
+li .dropdown-header {
+  background-color: rgba(200, 200, 200, 0.5);
+  font-weight: bold;
+}
+
+#dropdown-title {
+  background-color: teal;
+}
+
+
 
 /* デバッグウインドウ */
 
