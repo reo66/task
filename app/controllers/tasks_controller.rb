@@ -39,6 +39,7 @@ def update
 end
 
 def show
+ @task = Task.find(params[:id])
  @user = User.find(params[:user_id])
 end
   
