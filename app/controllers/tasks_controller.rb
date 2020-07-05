@@ -32,17 +32,27 @@ def update
      @task.update(task_params)
       if @task.save
         flash[:success] = "タスクを更新しました。"
-        redirect_to user_task_path
+        redirect_to user_task_url
       else  
         render :edit      
       end
 end
 
 def show
+   @user = User.find(params[:user_id])
  @task = Task.find(params[:id])
  @user = User.find(params[:user_id])
 end
+
+
+def destroy
+  @user = User.find(params[:user_id])
+  @task = @user.tasks.find_by(id: params[:id])
+  @task.destroy
+  flash[:success] = "タスクを消去しました"
+  redirect_to user_tasks_url @user
   
+end   
 
   
   
