@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
-      flash.now[:danger] = '認証に失敗しました。'
+      flash.now[:danger] = '認証に失敗しました'
       render :new
     end
   end
