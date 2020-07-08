@@ -40,9 +40,8 @@ class TasksController < ApplicationController
   end
 
 def show
-   @user = User.find(params[:user_id])
- @task = Task.find(params[:id])
  @user = User.find(params[:user_id])
+ @task = Task.find(params[:id])
 end
 
 
@@ -59,6 +58,11 @@ end
   
   private
 
+
+ def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+ end
+    
     def task_params
       #params.require(:user).permit(:name, :description)
       params.require(:task).permit(:name, :description)
