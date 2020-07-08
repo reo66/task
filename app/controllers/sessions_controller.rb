@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
   end
   
   def create
+    @user = User.new
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
@@ -26,3 +27,4 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 end
+
