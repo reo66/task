@@ -82,9 +82,18 @@ end
       redirect_to(root_url) unless current_user?(@user)
      end
 
-    # システム管理権限所有かどうか判定します。
+    
     def admin_user
       redirect_to root_url unless current_user.admin?
+    end
+    
+    
+    def admin_or_correct_user
+      @user = User.find(params[:user_id]) if @user.blank?
+      unless current_user?(@user) || current_user.admin?
+        flash[:danger] = "編集権限がありません。"
+        redirect_to(root_url)
+      end  
     end
 end
 
