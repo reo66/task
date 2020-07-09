@@ -17,13 +17,13 @@ class ApplicationController < ActionController::Base
   # 現ログインユーザーが管理者であるか
   def admin_user
     redirect_to root_url unless current_user.admin?
-  end
+  end 
   
   # @userが定義されている上で使用する
   def admin_or_correct
     unless current_user?(@user) || current_user.admin?
       flash[:danger] = "権限がありません。"
-      redirect_to root_url
+      redirect_to user_tasks_url current_user
     end  
   end
 end

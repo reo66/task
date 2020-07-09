@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :admin_or_correct, only: %i(show)
   
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page],per_page: 20)
   end
   
   def show
@@ -78,9 +78,18 @@ def logged_in_user
       end
 end
 
-     def correct_user
+
+def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+end
+    
+    def set_user
+      @user = User.find(params[:id])
+    end
+    def correct_user
       redirect_to(root_url) unless current_user?(@user)
-     end
+    end
+    
 
     
     def admin_user
@@ -88,12 +97,13 @@ end
     end
     
     
-    def admin_or_correct_user
-      @user = User.find(params[:user_id]) if @user.blank?
-      unless current_user?(@user) || current_user.admin?
-        flash[:danger] = "編集権限がありません。"
-        redirect_to(root_url)
-      end  
-    end
+   # @userが定義されている上で使用する
+  def admin_or_correct
+    unless current_user?(@user) || current_user.admin?
+      flash[:danger] = "権限がありません。"
+      redirect_to root_url
+    end  
+  end
 end
 
+ 

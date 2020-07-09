@@ -29,3 +29,5 @@ class SessionsController < ApplicationController
   end
 end
 
+# /users/5/tasks/new
+# /users/5/tasks/152/edit
